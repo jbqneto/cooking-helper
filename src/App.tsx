@@ -1,20 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Chip,
-  Divider,
-  IconButton,
-  Stack,
-  Switch,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
 
