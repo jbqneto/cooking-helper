@@ -13,6 +13,13 @@ type Input = Omit<Ingredient, ""> & {
   disabled?: boolean;
 };
 
+type InputTarget = {
+  target: {
+    name: "name" | "qtd";
+    value: string;
+  };
+};
+
 function App() {
   const [isEditing, setIsEditing] = useState(-1);
   const [oldQtd, setOldQtd] = useState(0);
@@ -33,13 +40,10 @@ function App() {
   };
 
   const handleQtdChange = (index: number, event: any) => {
-    const oldQtd = inputs[index].qtd;
-    const newQtd = event?.target.value ?? oldQtd;
-
     handleFormChange(index, event);
   };
 
-  const handleFormChange = (index: number, event: any) => {
+  const handleFormChange = (index: number, event: InputTarget) => {
     const ingredients = [...inputs];
     const ingredient = ingredients[index];
 
