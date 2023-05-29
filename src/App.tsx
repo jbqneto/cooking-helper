@@ -40,18 +40,32 @@ function App() {
   };
 
   const handleQtdChange = (index: number, event: any) => {
-    handleFormChange(index, event);
+    const input = inputs[index];
+
+    if (input) {
+      console.log(event.target.value);
+      updateInput(index, { ...input, qtd: event.target.value });
+    }
   };
 
-  const handleFormChange = (index: number, event: InputTarget) => {
+  const updateInput = (index: number, input: Input) => {
+    const ingredients = [...inputs];
+    if (ingredients.length > index) {
+      ingredients[index] = input;
+    }
+
+    setInputs(ingredients);
+  };
+
+  const handleNameChange = (index: number, event: any) => {
     const ingredients = [...inputs];
     const ingredient = ingredients[index];
 
     if (ingredient) {
-      ingredient[event.target.name] = event.target.value;
-    }
+      ingredient.name = event.target.value;
 
-    setInputs(ingredients);
+      updateInput(index, ingredient);
+    }
   };
 
   const handleSave = () => {
@@ -86,7 +100,7 @@ function App() {
           name="name"
           disabled={input.disabled}
           variant="standard"
-          onChange={(event) => handleFormChange(index, event)}
+          onChange={(event) => handleNameChange(index, event)}
         />
         <TextField
           label="Quantidade"
@@ -119,7 +133,7 @@ function App() {
             {inputs.map((ingredient, index) => getFormGroup(index, ingredient))}
             <hr />
             <div className="btns">
-              <Button onClick={(event) => handleSave()} variant="contained">
+              <Button onClick={() => handleSave()} variant="contained">
                 Salvar
               </Button>
             </div>
