@@ -13,13 +13,6 @@ type Input = Omit<Ingredient, ""> & {
   disabled?: boolean;
 };
 
-type InputTarget = {
-  target: {
-    name: "name" | "qtd";
-    value: string;
-  };
-};
-
 function App() {
   const [isEditing, setIsEditing] = useState(-1);
   const [oldQtd, setOldQtd] = useState(0);
@@ -124,7 +117,7 @@ function App() {
           <h2>Receitas</h2>
         </div>
         <div className="actions">
-          <Button onClick={(event) => handleAdd()} variant="contained">
+          <Button onClick={() => handleAdd()} variant="contained">
             Adicionar ingrediente
           </Button>
         </div>
